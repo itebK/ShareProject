@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Add Community</h1>
+
+<form method="POST" action="" /> {% csrf_token %}
+<div class="form-group row">
+    <label class="col-2 col-form-label">Title</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="titre">
+    </div>
+    <label class="col-2 col-form-label">Description</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="description">
+    </div>
+    <label class="col-2 col-form-label">Key words</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="motscles">
+    </div>
+    <!-- <label for="exampleSelect1">Choose your model</label>
+    <select class="form-control" required="True" name="modele">
+        {% for mod in all_modele%} 
+        <option>{{mod.libelle}}</option>
+        {%endfor%}
+    </select> -->
+</div>
+
+
+<button class="btn" type="submit">Save</button>
+<a href="#" class="btn btn-info" role="button">Cancel</a>
+</form>
+{% endblock %}

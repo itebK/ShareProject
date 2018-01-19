@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Add Rubric</h1>
+
+<form method="POST" action="" /> {% csrf_token %}
+<div class="form-group row">
+    <label class="col-2 col-form-label">Category</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="categorie">
+    </div>
+    <label class="col-2 col-form-label">Label</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="libelle">
+    </div>
+    <label class="col-2 col-form-label">Type Rubric</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="type_r">
+    </div>
+    <label class="col-2 col-form-label">Requireness</label>
+    <div class="col-10">
+        <input class="form-control" type="checkbox" name="obligatoire">
+    </div>
+
+</div>
+
+
+<button class="btn" type="submit">Save</button>
+<a href="#" class="btn btn-info" role="button">Cancel</a>
+</form>
+{% endblock %}

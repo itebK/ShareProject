@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Profile : {{user.username}}</h1>
+<h6> <label for="">Last Login:</label> {{user.last_login}}</h6>
+{% csrf_token %}
+<div class="well">
+    <ul class="nav">
+        <li>
+            <h4> <label>Username:</label> {{user.username}}</h4>
+        </li>
+        <li class="nav-divider"></li>
+        <li>
+            <h4> <label>Fist Name:</label> {{user.first_name}}</h4>
+        </li>
+        <li class="nav-divider"></li>
+        <li>
+            <h4> <label>Last Name:</label> {{user.last_name}}</h4>
+        </li>
+        <li class="nav-divider"></li>
+        <li>
+            <h4> <label>Email:</label> {{user.email}}</h4>
+        </li>
+
+        <li class="nav-divider"></li>
+        <a href="/profile/edit" class="btn btn-info" role="button">Edit Profile</a>
+
+
+    </ul>
+</div>
+</div> {% endblock %}

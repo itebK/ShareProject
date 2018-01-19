@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %} {% comment %} {{allusergroups}} {{user.groups.all}} {% endcomment %}
+<div class="container">
+    <div class="row">
+        <h1 style="display: inline-flex;"><label for="">Communities</label>&nbsp;&nbsp;&nbsp;
+
+            <form method="post" action="{% url 'AddCommunity'%}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">+</button>
+            </form>
+
+        </h1>
+
+        <div class="container">
+            <div class="row">
+                {% for comm in communities%}
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive">
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                <a href="{{comm.id}}">
+                                    <h4>{{comm}}</h4>
+                                </a>
+
+                                <p>
+                                    <i class="glyphicon glyphicon-user"></i>Owner: <b>{{comm.profile_fk}}<b><br>
+                                   
+                                <small > {{comm.description}} </small>
+                                </p>
+                                <small>{{comm.motsCles}}</small><br>
+                                <!-- Split button -->
+                                <div class="btn-group">
+                                    <form action="delete/{{comm.id}}">
+                                    <button  type="submit" class="btn btn-danger">X</button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% comment %} /Groups {% endcomment %} {% endblock %}

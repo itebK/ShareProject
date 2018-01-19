@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+<h1> <span class="glyphicon glyphicon-cog"></span> Community Configuration</h1>
+
+<div class="container">
+    <div class="progress">
+        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+            1/2 (Models)
+        </div>
+    </div>
+    <h2>Models</h2>
+    <p>Please pick a model to use</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Label</th>
+                <th>Description</th>
+                <th>Model Type</th>
+            </tr>
+        </thead>
+        <form method="POST" action="" /> {% csrf_token %}
+        <tbody>
+            {% for mod in all_modele%}
+            <tr>
+                <td>
+                    <input type="checkbox" name="{{mod.id}}">
+                </td>
+                <td>{{mod.libelle}}</td>
+                <td>{{mod.description}}</td>
+                <td>{{mod.type_m}}</td>
+
+            </tr>
+            {% endfor%}
+            <tr>
+                <td>
+                    <button class="btn" type="submit">Save</button>
+                    <!-- <a href="{%url 'Conf_Rubrique_Community' commid %}" type="submit">Go</a> -->
+                    <a href="#" class="btn btn-info" role="button">Cancel</a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+
+
+        </form>
+    </table>
+</div>
+
+{% endblock %}

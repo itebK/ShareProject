@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %} {% comment %} {{allusergroups}} {{user.groups.all}} {% endcomment %}
+<div class="container">
+    <div class="row">
+        <h1><label for="">Groups</label></h1>
+        <form method="post" class="formGroup">
+            {% csrf_token %} {% for grp in UserGroups%}
+            <div class="col-sm-4">
+                <div class="btn-group">
+                    <form action="delete/{{grp.id}}">
+                        <button type="submit" class="btn btn-danger">X</button>
+                    </form>
+                </div>
+                <div class="card" style="width: 20rem;">
+                    <img class="card-img-top" src="https://image.freepik.com/free-icon/crowd-of-users_318-50125.jpg" alt="Card image cap" style="width:82%;">
+                    <div class="card-block">
+                        <a href="{{grp.id}}">
+                            <h4 class="card-title" name="groupe">{{grp.name}} </h4>
+                        </a>
+                        <p class="card-text">{{grp.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% endfor %}
+
+    </div>
+</div>
+{% comment %} /Groups {% endcomment %} {% endblock %}

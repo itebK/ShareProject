@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Add component</h1>
+
+<form method="POST" action="" /> {% csrf_token %}
+<div class="form-group row">
+    <label class="col-2 col-form-label">Label</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="libelle">
+    </div>
+    <label class="col-2 col-form-label">Description</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="description">
+    </div>
+    <label class="col-2 col-form-label">Type Component</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="typec">
+    </div>
+    <label class="col-2 col-form-label">Category</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="categorie">
+    </div>
+    <label class="col-2 col-form-label">Link</label>
+    <div class="col-10">
+        <input class="form-control" required="True" type="text" name="lien">
+    </div>
+    <label for="exampleSelect1">Choose your model</label>
+    <select class="form-control" required="True" name="modele">
+        {% for mod in models%} 
+        <option>{{mod.libelle}}</option>
+        {%endfor%}
+    </select>
+</div>
+
+
+<button class="btn" type="submit">Save</button>
+<a href="#" class="btn btn-info" role="button">Cancel</a>
+</form>
+{% endblock %}

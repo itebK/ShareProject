@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Header -->
+<header class="masthead">
+    <div class="container">
+
+        <div class="intro-text">
+            <span class="name">Welcome,<small>{{ user.username }}</small>!</span>
+            <hr class="star-light">
+            <span class="skills">Thanks for confirming your email address!</span>
+        </div>
+
+    </div>
+</header>
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1>Groups</h1>
+        </div>
+        {%for grp in all_groups%}
+        <div class="container-fluid">
+            <h3> {{grp.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/profile/group/join?id={{grp.id}}" class="btn btn-success">Join</a></h3>
+        </div>
+        {%endfor%}
+
+    </div>
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1>Communities</h1>
+        </div>
+        {%for comm in all_communities%}
+        <div class="container-fluid">
+            <h3> {{comm.titre}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/profile/communities/join?id={{comm.id}}" class="btn btn-success">Join</a></h3>
+        </div>
+        {%endfor%}
+
+    </div>
+</div>
+
+
+{%endblock%}

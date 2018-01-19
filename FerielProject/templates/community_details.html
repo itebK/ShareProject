@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="main col-xs-9">
+            <h1><label for="">{{community_details.0}}</label></h1>
+
+            <form method="post" action="{% url 'AddComponent' commid=community_details.0.id %}">
+                {% csrf_token %}
+                <h4>Add component <button type="submit" class="btn btn-success">+</button></h4>
+            </form>
+            <table class="table table-hover">
+                {% for m in models%}
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Label</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Requirement</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for n in m%}
+                    <tr>
+                        {%for rub in get_rubriques%} {%if rub.id == n.rubrique_fk%}
+                        <td>{{n.libelle}}</td>
+                        <td>{{rub.libelle}}</td>
+                        <td>{{rub.categorie}}</td>
+                        <td>{{rub.type_r}}</td>
+                        {% if rub.obligatoire == True %}
+                        <td><i class="glyphicon glyphicon-ok-sign"></i></td>
+                        {%else%}
+                        <td><i class="glyphicon glyphicon-remove-sign"></i></td>
+                        {%endif%}
+                        <!-- <td><a href="/profile/communities/Conf_Rubrique_Community/Add_rubrique/{{n.id}}/{{commid}}" class="btn btn-danger">+</a></td> -->
+                        {%endif%} {%endfor%}
+
+                    </tr>
+
+                    {% endfor%}
+                </tbody>
+                {%endfor%}
+
+            </table>
+            {%for component in get_all_component%}
+
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title"><a href="/profile/communities/{{community_details.0.id}}/{{component.id}}">  {{component.libelle}}</a></h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span class="glyphicon glyphicon-user"></span> Owner: {{component.profile_fk}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span class="glyphicon glyphicon-link"></span>{{component.lien}}</h6>
+                    <p class="card-text">{{component.description}}</p>
+
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Type: {{component.type_c}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Category: {{component.categorie}}</h6>
+
+
+
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for comment in get_all_comments %} {% if comment.composant_fk.libelle == component.libelle %}
+
+                    <div class="col-sm-8">
+                        <div class="panel panel-white post panel-shadow">
+                            <div class="post-heading">
+                                <div class="pull-left image">
+                                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                                </div>
+                                <div class="pull-left meta">
+                                    <div class="title h5">
+                                        <a href="#"><b>{{comment.profile_fk}}</b></a> made a comment.
+                                    </div>
+                                    <h6 class="text-muted time">{{comment.comment_date}}</h6>
+                                </div>
+                            </div>
+                            <div class="post-description">
+                                <p>{{comment.contexte}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    {%endif%} {% endfor%}
+                </div>
+            </div>
+            <div class="container pb-cmnt-container">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="panel panel-info">
+                            <div class="panel-body">
+                                <form method="post" action="{% url 'AddComment' commid=community_details.0.id componentid=component.id  %}">
+                                    {% csrf_token %}
+
+                                    <input placeholder="{{user}}, Please write your comment here!" class="pb-cmnt-textarea" name="commentcontent{{component.id}}"></input>
+
+                                    <button type="submit" class="btn btn-primary pull-right">Comment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {%endfor%}
+
+
+        </div>
+        <div class="sidebar col-xs-3">
+            <form action="{% url 'SearchComponent' commid=community_details.0.id  %}" method="post">
+                {%csrf_token%}
+                <div class="well">
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" name="search_component" placeholder="Search for component ...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="submit">Go!</button>
+                          </span>
+                    </div>
+                </div>
+            </form>
+            <div class="well">
+
+                <!-- Membres -->
+
+                <div class="wrapper1">
+                    <h4><i class="fa fa-user"></i> Member(s)</h4>
+                </div>
+                <div class="well">
+                    {% for pc in profile_community%}
+                    <a href="#">{{pc}}</a><br> {%endfor%}
+                    </br>
+                    </br>
+                </div>
+
+                <!-- /Membres -->
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

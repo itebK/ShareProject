@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}ITEB PROJECT{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Custom fonts for this template -->
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <style>
+        .custom_footer {
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            color: #18bc9c;
+            background-color: #2C3E50;
+        }
+        
+        .pb-cmnt-container {
+            font-family: Lato;
+            margin-top: 10px;
+            margin-left: 15px;
+        }
+        
+        .pb-cmnt-textarea {
+            resize: none;
+            padding: 20px;
+            height: 100px;
+            width: 100%;
+            border: 1px solid #18BC9C;
+        }
+        
+        .panel-shadow {
+            box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+        }
+        
+        .panel-white {
+            border: 1px solid #dddddd;
+        }
+        
+        .panel-white .panel-heading {
+            color: #333;
+            background-color: #fff;
+            border-color: #ddd;
+        }
+        
+        .panel-white .panel-footer {
+            background-color: #fff;
+            border-color: #ddd;
+        }
+        
+        .post .post-heading {
+            height: 95px;
+            padding: 20px 15px;
+        }
+        
+        .post .post-heading .avatar {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin-right: 15px;
+        }
+        
+        .post .post-heading .meta .title {
+            margin-bottom: 0;
+        }
+        
+        .post .post-heading .meta .title a {
+            color: black;
+        }
+        
+        .post .post-heading .meta .title a:hover {
+            color: #aaaaaa;
+        }
+        
+        .post .post-heading .meta .time {
+            margin-top: 8px;
+            color: #999;
+        }
+        
+        .post .post-image .image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .post .post-description {
+            padding: 15px;
+        }
+        
+        .post .post-description p {
+            font-size: 14px;
+        }
+        
+        .post .post-description .stats {
+            margin-top: 20px;
+        }
+        
+        .post .post-description .stats .stat-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        .post .post-description .stats .stat-item .icon {
+            margin-right: 8px;
+        }
+        
+        .post .post-footer {
+            border-top: 1px solid #ddd;
+            padding: 15px;
+        }
+        
+        .post .post-footer .input-group-addon a {
+            color: #454545;
+        }
+        
+        .post .post-footer .comments-list {
+            padding: 0;
+            margin-top: 20px;
+            list-style-type: none;
+        }
+        
+        .post .post-footer .comments-list .comment {
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .post .post-footer .comments-list .comment .avatar {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .post .post-footer .comments-list .comment .comment-heading {
+            display: block;
+            width: 100%;
+        }
+        
+        .post .post-footer .comments-list .comment .comment-heading .user {
+            font-size: 14px;
+            font-weight: bold;
+            display: inline;
+            margin-top: 0;
+            margin-right: 10px;
+        }
+        
+        .post .post-footer .comments-list .comment .comment-heading .time {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 0;
+            display: inline;
+        }
+        
+        .post .post-footer .comments-list .comment .comment-body {
+            margin-left: 50px;
+        }
+        
+        .post .post-footer .comments-list .comment>.comments-list {
+            margin-left: 50px;
+        }
+        
+        #srch-comp {
+            width: 130px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        /* When the input field gets focus, change its width to 100% */
+        
+        #srch-comp:focus {
+            width: 100%;
+        }
+        
+        body {
+            font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden
+        }
+        
+        p {
+            font-size: 20px
+        }
+        
+        p.small {
+            font-size: 16px
+        }
+        
+        a,
+        a.active,
+        a:active,
+        a:focus,
+        a:hover {
+            color: #18bc9c;
+            outline: 0
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            text-transform: uppercase
+        }
+        
+        hr.star-light,
+        hr.star-primary {
+            max-width: 250px;
+            margin: 25px auto 30px;
+            padding: 0;
+            text-align: center;
+            border: none;
+            border-top: solid 5px
+        }
+        
+        hr.star-light:after,
+        hr.star-primary:after {
+            font-family: FontAwesome;
+            font-size: 2em;
+            position: relative;
+            top: -.8em;
+            display: inline-block;
+            padding: 0 .25em;
+            content: '\f005'
+        }
+        
+        hr.star-light {
+            border-color: #fff
+        }
+        
+        hr.star-light:after {
+            color: #fff;
+            background-color: #18bc9c
+        }
+        
+        hr.star-primary {
+            border-color: #2c3e50
+        }
+        
+        hr.star-primary:after {
+            color: #2c3e50;
+            background-color: #fff
+        }
+        
+        .img-centered {
+            margin: 0 auto
+        }
+        
+        section {
+            padding: 100px 0
+        }
+        
+        section h2 {
+            font-size: 3em;
+            margin: 0
+        }
+        
+        section.success {
+            color: #fff;
+            background: #18bc9c
+        }
+        
+        @media (max-width:767px) {
+            section {
+                padding: 75px 0
+            }
+            section.first {
+                padding-top: 75px
+            }
+        }
+        
+        .scroll-top {
+            position: fixed;
+            z-index: 1049;
+            right: 2%;
+            bottom: 2%;
+            width: 50px;
+            height: 50px
+        }
+        
+        .scroll-top .btn {
+            font-size: 16px;
+            line-height: 28px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 100%
+        }
+        
+        .scroll-top .btn:focus {
+            outline: 0
+        }
+        
+        #mainNav {
+            font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            background: #2c3e50
+        }
+        
+        #mainNav a:focus {
+            outline: 0
+        }
+        
+        #mainNav .navbar-brand {
+            font-size: 1.1rem;
+            color: #fff
+        }
+        
+        #mainNav .navbar-brand.active,
+        #mainNav .navbar-brand:active,
+        #mainNav .navbar-brand:focus,
+        #mainNav .navbar-brand:hover {
+            color: #fff
+        }
+        
+        #mainNav .navbar-nav {
+            letter-spacing: 1px
+        }
+        
+        #mainNav .navbar-nav li.nav-item a.nav-link {
+            color: #fff
+        }
+        
+        #mainNav .navbar-nav li.nav-item a.nav-link:hover {
+            color: #18bc9c;
+            outline: 0
+        }
+        
+        #mainNav .navbar-nav li.nav-item a.nav-link:active,
+        #mainNav .navbar-nav li.nav-item a.nav-link:focus {
+            color: #fff
+        }
+        
+        #mainNav .navbar-toggler {
+            font-size: 14px;
+            padding: 11px;
+            text-transform: uppercase;
+            color: #fff;
+            border-color: #fff
+        }
+        
+        #mainNav .navbar-toggler:focus,
+        #mainNav .navbar-toggler:hover {
+            color: #fff;
+            border-color: #18bc9c;
+            background-color: #18bc9c
+        }
+        
+        @media (min-width:992px) {
+            #mainNav {
+                padding-top: 25px;
+                padding-bottom: 25px;
+                -webkit-transition: padding-top .3s, padding-bottom .3s;
+                -moz-transition: padding-top .3s, padding-bottom .3s;
+                transition: padding-top .3s, padding-bottom .3s
+            }
+            #mainNav .navbar-brand {
+                font-size: 2em;
+                -webkit-transition: all .3s;
+                -moz-transition: all .3s;
+                transition: all .3s
+            }
+            #mainNav .navbar-nav>li.nav-item>a.nav-link.active {
+                color: #fff;
+                border-radius: 3px;
+                background: #18bc9c
+            }
+            #mainNav .navbar-nav>li.nav-item>a.nav-link.active:active,
+            #mainNav .navbar-nav>li.nav-item>a.nav-link.active:focus,
+            #mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover {
+                color: #fff;
+                background: #18bc9c
+            }
+            #mainNav.navbar-shrink {
+                padding-top: 10px;
+                padding-bottom: 10px
+            }
+            #mainNav.navbar-shrink .navbar-brand {
+                font-size: 1.5em
+            }
+        }
+        
+        header.masthead {
+            padding-top: 100px;
+            padding-bottom: 50px;
+            text-align: center;
+            color: #fff;
+            background: #18bc9c
+        }
+        
+        header.masthead img {
+            display: block;
+            margin: 0 auto 20px
+        }
+        
+        header.masthead .intro-text .name {
+            font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 2em;
+            font-weight: 700;
+            display: block;
+            text-transform: uppercase
+        }
+        
+        header.masthead .intro-text .skills {
+            font-size: 1.25em;
+            font-weight: 300
+        }
+        
+        @media (min-width:768px) {
+            header.masthead {
+                padding-top: 200px;
+                padding-bottom: 100px
+            }
+            header.masthead .intro-text .name {
+                font-size: 4.75em
+            }
+            header.masthead .intro-text .skills {
+                font-size: 1.75em
+            }
+        }
+        
+        #portfolio .portfolio-item {
+            right: 0;
+            margin: 0 0 15px
+        }
+        
+        #portfolio .portfolio-item .portfolio-link {
+            position: relative;
+            display: block;
+            max-width: 400px;
+            margin: 0 auto;
+            cursor: pointer
+        }
+        
+        #portfolio .portfolio-item .portfolio-link .caption {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all ease .5s;
+            -moz-transition: all ease .5s;
+            transition: all ease .5s;
+            opacity: 0;
+            background: rgba(24, 188, 156, .9)
+        }
+        
+        #portfolio .portfolio-item .portfolio-link .caption:hover {
+            opacity: 1
+        }
+        
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content {
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            height: 20px;
+            margin-top: -12px;
+            text-align: center;
+            color: #fff
+        }
+        
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content i {
+            margin-top: -12px
+        }
+        
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content h3,
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content h4 {
+            margin: 0
+        }
+        
+        #portfolio * {
+            z-index: 2
+        }
+        
+        @media (min-width:767px) {
+            #portfolio .portfolio-item {
+                margin: 0 0 30px
+            }
+        }
+        
+        .portfolio-modal .modal-dialog {
+            max-width: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            border: none;
+            border-radius: 0;
+            background-clip: border-box;
+            -webkit-box-shadow: none;
+            box-shadow: none
+        }
+        
+        .portfolio-modal .modal-dialog .modal-content {
+            padding: 100px 0;
+            border: 0;
+            border-radius: 0
+        }
+        
+        .portfolio-modal .modal-dialog .modal-content h2 {
+            font-size: 3em;
+            margin: 0
+        }
+        
+        .portfolio-modal .modal-dialog .modal-content img {
+            margin-bottom: 30px
+        }
+        
+        .portfolio-modal .modal-dialog .modal-content .item-details {
+            margin: 30px 0
+        }
+        
+        .portfolio-modal .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 75px;
+            height: 75px;
+            cursor: pointer;
+            background-color: transparent
+        }
+        
+        .portfolio-modal .close-modal:hover {
+            opacity: .3
+        }
+        
+        .portfolio-modal .close-modal .lr {
+            z-index: 1051;
+            width: 1px;
+            height: 75px;
+            margin-left: 35px;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background-color: #2c3e50
+        }
+        
+        .portfolio-modal .close-modal .lr .rl {
+            z-index: 1052;
+            width: 1px;
+            height: 75px;
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+            background-color: #2c3e50
+        }
+        
+        .portfolio-modal .modal-backdrop {
+            display: none;
+            opacity: 0
+        }
+        
+        .floating-label-form-group {
+            position: relative;
+            margin-bottom: 0;
+            padding-bottom: .5em;
+            border-bottom: 1px solid #eee
+        }
+        
+        .floating-label-form-group input,
+        .floating-label-form-group textarea {
+            font-size: 1.5em;
+            position: relative;
+            z-index: 1;
+            padding-right: 0;
+            padding-left: 0;
+            resize: none;
+            border: none;
+            border-radius: 0;
+            background: 0 0;
+            box-shadow: none!important
+        }
+        
+        .floating-label-form-group label {
+            font-size: .85em;
+            line-height: 1.764705882em;
+            position: relative;
+            z-index: 0;
+            top: 2em;
+            display: block;
+            margin: 0;
+            -webkit-transition: top .3s ease, opacity .3s ease;
+            -moz-transition: top .3s ease, opacity .3s ease;
+            -ms-transition: top .3s ease, opacity .3s ease;
+            transition: top .3s ease, opacity .3s ease;
+            vertical-align: middle;
+            vertical-align: baseline;
+            opacity: 0
+        }
+        
+        .floating-label-form-group:not(:first-child) {
+            padding-left: 14px;
+            border-left: 1px solid #eee
+        }
+        
+        .floating-label-form-group-with-value label {
+            top: 0;
+            opacity: 1
+        }
+        
+        .floating-label-form-group-with-focus label {
+            color: #18bc9c
+        }
+        
+        form .row:first-child .floating-label-form-group {
+            border-top: 1px solid #eee
+        }
+        
+        footer {
+            color: #fff
+        }
+        
+        footer h3 {
+            margin-bottom: 30px
+        }
+        
+        footer .footer-above {
+            padding-top: 50px;
+            background-color: #2c3e50
+        }
+        
+        footer .footer-col {
+            margin-bottom: 50px
+        }
+        
+        footer .footer-below {
+            padding: 25px 0;
+            background-color: #2c3e50
+        }
+        
+        .btn-outline {
+            font-size: 20px;
+            margin-top: 15px;
+            transition: all .3s ease-in-out;
+            color: #fff;
+            border: solid 2px #fff;
+            background: 0 0
+        }
+        
+        .btn-outline.active,
+        .btn-outline:active,
+        .btn-outline:focus,
+        .btn-outline:hover {
+            color: #18bc9c;
+            border: solid 2px #fff;
+            background: #fff
+        }
+        
+        .btn-primary {
+            font-weight: 700;
+            color: #fff;
+            border-color: #2c3e50;
+            background-color: #2c3e50
+        }
+        
+        .btn-primary.focus,
+        .btn-primary:focus {
+            color: #fff;
+            border-color: #000;
+            background-color: #1a252f
+        }
+        
+        .btn-primary:hover {
+            color: #fff;
+            border-color: #161f29;
+            background-color: #1a252f
+        }
+        
+        .btn-primary.active,
+        .btn-primary:active,
+        .open>.btn-primary.dropdown-toggle {
+            color: #fff;
+            border-color: #161f29;
+            background-color: #1a252f
+        }
+        
+        .btn-primary.active.focus,
+        .btn-primary.active:focus,
+        .btn-primary.active:hover,
+        .btn-primary:active.focus,
+        .btn-primary:active:focus,
+        .btn-primary:active:hover,
+        .open>.btn-primary.dropdown-toggle.focus,
+        .open>.btn-primary.dropdown-toggle:focus,
+        .open>.btn-primary.dropdown-toggle:hover {
+            color: #fff;
+            border-color: #000;
+            background-color: #0d1318
+        }
+        
+        .btn-primary.active,
+        .btn-primary:active,
+        .open>.btn-primary.dropdown-toggle {
+            background-image: none
+        }
+        
+        .btn-primary.disabled.focus,
+        .btn-primary.disabled:focus,
+        .btn-primary.disabled:hover,
+        .btn-primary[disabled].focus,
+        .btn-primary[disabled]:focus,
+        .btn-primary[disabled]:hover,
+        fieldset[disabled] .btn-primary.focus,
+        fieldset[disabled] .btn-primary:focus,
+        fieldset[disabled] .btn-primary:hover {
+            border-color: #2c3e50;
+            background-color: #2c3e50
+        }
+        
+        .btn-primary .badge {
+            color: #2c3e50;
+            background-color: #fff
+        }
+        
+        .btn-success {
+            font-weight: 700;
+            color: #fff;
+            border-color: #18bc9c;
+            background-color: #18bc9c
+        }
+        
+        .btn-success.focus,
+        .btn-success:focus {
+            color: #fff;
+            border-color: #0a4b3e;
+            background-color: #128f76
+        }
+        
+        .btn-success:hover {
+            color: #fff;
+            border-color: #11866f;
+            background-color: #128f76
+        }
+        
+        .btn-success.active,
+        .btn-success:active,
+        .open>.btn-success.dropdown-toggle {
+            color: #fff;
+            border-color: #11866f;
+            background-color: #128f76
+        }
+        
+        .btn-success.active.focus,
+        .btn-success.active:focus,
+        .btn-success.active:hover,
+        .btn-success:active.focus,
+        .btn-success:active:focus,
+        .btn-success:active:hover,
+        .open>.btn-success.dropdown-toggle.focus,
+        .open>.btn-success.dropdown-toggle:focus,
+        .open>.btn-success.dropdown-toggle:hover {
+            color: #fff;
+            border-color: #0a4b3e;
+            background-color: #0e6f5c
+        }
+        
+        .btn-success.active,
+        .btn-success:active,
+        .open>.btn-success.dropdown-toggle {
+            background-image: none
+        }
+        
+        .btn-success.disabled.focus,
+        .btn-success.disabled:focus,
+        .btn-success.disabled:hover,
+        .btn-success[disabled].focus,
+        .btn-success[disabled]:focus,
+        .btn-success[disabled]:hover,
+        fieldset[disabled] .btn-success.focus,
+        fieldset[disabled] .btn-success:focus,
+        fieldset[disabled] .btn-success:hover {
+            border-color: #18bc9c;
+            background-color: #18bc9c
+        }
+        
+        .btn-success .badge {
+            color: #18bc9c;
+            background-color: #fff
+        }
+        
+        .btn-social {
+            font-size: 20px;
+            line-height: 45px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border: 2px solid #fff;
+            border-radius: 100%
+        }
+        
+        .btn.active,
+        .btn:active,
+        .btn:focus {
+            outline: 0
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">CS</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <!-- <li><a href="{% url 'usergroups' %}">Groups</a></li> -->
+                <li><a href="{% url 'usercommunities' %}">Community</a></li>
+                <li><a data-toggle="dropdown">Other <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'All_reports' %}">Reports</a></li>
+                        <li><a href="{% url 'All_process' %}">Process</a></li>
+                        <li><a href="{% url 'All_languages' %}">Language</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 
+            <div class="col-sm-3 col-md-3 col-md-push-1">
+                <form class="navbar-form" role="search">
+                    <div class="input-group" id="srchComp">
+                        <input type="text" class="form-control" placeholder="Search Components ..." name="srch-comp" id="srch-comp">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div> -->
+
+
+            {%endif%}
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <!-- <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+                <li>
+                    <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                </li>
+                <li>
+                    <a><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
+                        <li><a href="/profile/">Account Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                    </ul>
+                </li>
+
+                {% else %}
+                <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-bottom:200px;">
+        <div class="row">
+            <div class="col">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="custom_footer">
+        <div style="padding: 16px;">
+            <p style="float:left;">© 2017, ISAMM, All rights reserved</p>
+            <p style="float:right;">KHAYATI ITEB</p>
+        </div>
+    </div>
+
+
+    {% block javascript %}
+    <script>
+        ! function(o) {
+            "use strict";
+            o('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") && location.hostname == this.hostname) {
+                    var a = o(this.hash);
+                    if ((a = a.length ? a : o("[name=" + this.hash.slice(1) + "]")).length) return o("html, body").animate({
+                        scrollTop: a.offset().top - 48
+                    }, 1e3, "easeInOutExpo"), !1
+                }
+            }), o(".js-scroll-trigger").click(function() {
+                o(".navbar-collapse").collapse("hide")
+            }), o("body").scrollspy({
+                target: "#mainNav",
+                offset: 54
+            }), o(window).scroll(function() {
+                o("#mainNav").offset().top > 100 ? o("#mainNav").addClass("navbar-shrink") : o("#mainNav").removeClass("navbar-shrink")
+            }), o(function() {
+                o("body").on("input propertychange", ".floating-label-form-group", function(a) {
+                    o(this).toggleClass("floating-label-form-group-with-value", !!o(a.target).val())
+                }).on("focus", ".floating-label-form-group", function() {
+                    o(this).addClass("floating-label-form-group-with-focus")
+                }).on("blur", ".floating-label-form-group", function() {
+                    o(this).removeClass("floating-label-form-group-with-focus")
+                })
+            })
+        }(jQuery);
+
+
+
+
+        /* jqBootstrapValidation
+         * A plugin for automating validation on Twitter Bootstrap formatted forms.
+         *
+         * v1.3.6
+         *
+         * License: MIT <http://opensource.org/licenses/mit-license.php> - see LICENSE file
+         *
+         * http://ReactiveRaven.github.com/jqBootstrapValidation/
+         */
+
+        (function($) {
+
+            var createdElements = [];
+
+            var defaults = {
+                options: {
+                    prependExistingHelpBlock: false,
+                    sniffHtml: true, // sniff for 'required', 'maxlength', etc
+                    preventSubmit: true, // stop the form submit event from firing if validation fails
+                    submitError: false, // function called if there is an error when trying to submit
+                    submitSuccess: false, // function called just before a successful submit event is sent to the server
+                    semanticallyStrict: false, // set to true to tidy up generated HTML output
+                    autoAdd: {
+                        helpBlocks: true
+                    },
+                    filter: function() {
+                        // return $(this).is(":visible"); // only validate elements you can see
+                        return true; // validate everything
+                    }
+                },
+                methods: {
+                    init: function(options) {
+
+                        var settings = $.extend(true, {}, defaults);
+
+                        settings.options = $.extend(true, settings.options, options);
+
+                        var $siblingElements = this;
+
+                        var uniqueForms = $.unique(
+                            $siblingElements.map(function() {
+                                return $(this).parents("form")[0];
+                            }).toArray()
+                        );
+
+                        $(uniqueForms).bind("submit", function(e) {
+                            var $form = $(this);
+                            var warningsFound = 0;
+                            var $inputs = $form.find("input,textarea,select").not("[type=submit],[type=image]").filter(settings.options.filter);
+                            $inputs.trigger("submit.validation").trigger("validationLostFocus.validation");
+
+                            $inputs.each(function(i, el) {
+                                var $this = $(el),
+                                    $controlGroup = $this.parents(".control-group").first();
+                                if (
+                                    $controlGroup.hasClass("warning")
+                                ) {
+                                    $controlGroup.removeClass("warning").addClass("error");
+                                    warningsFound++;
+                                }
+                            });
+
+                            $inputs.trigger("validationLostFocus.validation");
+
+                            if (warningsFound) {
+                                if (settings.options.preventSubmit) {
+                                    e.preventDefault();
+                                }
+                                $form.addClass("error");
+                                if ($.isFunction(settings.options.submitError)) {
+                                    settings.options.submitError($form, e, $inputs.jqBootstrapValidation("collectErrors", true));
+                                }
+                            } else {
+                                $form.removeClass("error");
+                                if ($.isFunction(settings.options.submitSuccess)) {
+                                    settings.options.submitSuccess($form, e);
+                                }
+                            }
+                        });
+
+                        return this.each(function() {
+
+                            // Get references to everything we're interested in
+                            var $this = $(this),
+                                $controlGroup = $this.parents(".control-group").first(),
+                                $helpBlock = $controlGroup.find(".help-block").first(),
+                                $form = $this.parents("form").first(),
+                                validatorNames = [];
+
+                            // create message container if not exists
+                            if (!$helpBlock.length && settings.options.autoAdd && settings.options.autoAdd.helpBlocks) {
+                                $helpBlock = $('<div class="help-block" />');
+                                $controlGroup.find('.controls').append($helpBlock);
+                                createdElements.push($helpBlock[0]);
+                            }
+
+                            // =============================================================
+                            //                                     SNIFF HTML FOR VALIDATORS
+                            // =============================================================
+
+                            // *snort sniff snuffle*
+
+                            if (settings.options.sniffHtml) {
+                                var message = "";
+                                // ---------------------------------------------------------
+                                //                                                   PATTERN
+                                // ---------------------------------------------------------
+                                if ($this.attr("pattern") !== undefined) {
+                                    message = "Not in the expected format<!-- data-validation-pattern-message to override -->";
+                                    if ($this.data("validationPatternMessage")) {
+                                        message = $this.data("validationPatternMessage");
+                                    }
+                                    $this.data("validationPatternMessage", message);
+                                    $this.data("validationPatternRegex", $this.attr("pattern"));
+                                }
+                                // ---------------------------------------------------------
+                                //                                                       MAX
+                                // ---------------------------------------------------------
+                                if ($this.attr("max") !== undefined || $this.attr("aria-valuemax") !== undefined) {
+                                    var max = ($this.attr("max") !== undefined ? $this.attr("max") : $this.attr("aria-valuemax"));
+                                    message = "Too high: Maximum of '" + max + "'<!-- data-validation-max-message to override -->";
+                                    if ($this.data("validationMaxMessage")) {
+                                        message = $this.data("validationMaxMessage");
+                                    }
+                                    $this.data("validationMaxMessage", message);
+                                    $this.data("validationMaxMax", max);
+                                }
+                                // ---------------------------------------------------------
+                                //                                                       MIN
+                                // ---------------------------------------------------------
+                                if ($this.attr("min") !== undefined || $this.attr("aria-valuemin") !== undefined) {
+                                    var min = ($this.attr("min") !== undefined ? $this.attr("min") : $this.attr("aria-valuemin"));
+                                    message = "Too low: Minimum of '" + min + "'<!-- data-validation-min-message to override -->";
+                                    if ($this.data("validationMinMessage")) {
+                                        message = $this.data("validationMinMessage");
+                                    }
+                                    $this.data("validationMinMessage", message);
+                                    $this.data("validationMinMin", min);
+                                }
+                                // ---------------------------------------------------------
+                                //                                                 MAXLENGTH
+                                // ---------------------------------------------------------
+                                if ($this.attr("maxlength") !== undefined) {
+                                    message = "Too long: Maximum of '" + $this.attr("maxlength") + "' characters<!-- data-validation-maxlength-message to override -->";
+                                    if ($this.data("validationMaxlengthMessage")) {
+                                        message = $this.data("validationMaxlengthMessage");
+                                    }
+                                    $this.data("validationMaxlengthMessage", message);
+                                    $this.data("validationMaxlengthMaxlength", $this.attr("maxlength"));
+                                }
+                                // ---------------------------------------------------------
+                                //                                                 MINLENGTH
+                                // ---------------------------------------------------------
+                                if ($this.attr("minlength") !== undefined) {
+                                    message = "Too short: Minimum of '" + $this.attr("minlength") + "' characters<!-- data-validation-minlength-message to override -->";
+                                    if ($this.data("validationMinlengthMessage")) {
+                                        message = $this.data("validationMinlengthMessage");
+                                    }
+                                    $this.data("validationMinlengthMessage", message);
+                                    $this.data("validationMinlengthMinlength", $this.attr("minlength"));
+                                }
+                                // ---------------------------------------------------------
+                                //                                                  REQUIRED
+                                // ---------------------------------------------------------
+                                if ($this.attr("required") !== undefined || $this.attr("aria-required") !== undefined) {
+                                    message = settings.builtInValidators.required.message;
+                                    if ($this.data("validationRequiredMessage")) {
+                                        message = $this.data("validationRequiredMessage");
+                                    }
+                                    $this.data("validationRequiredMessage", message);
+                                }
+                                // ---------------------------------------------------------
+                                //                                                    NUMBER
+                                // ---------------------------------------------------------
+                                if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "number") {
+                                    message = settings.builtInValidators.number.message;
+                                    if ($this.data("validationNumberMessage")) {
+                                        message = $this.data("validationNumberMessage");
+                                    }
+                                    $this.data("validationNumberMessage", message);
+                                }
+                                // ---------------------------------------------------------
+                                //                                                     EMAIL
+                                // ---------------------------------------------------------
+                                if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "email") {
+                                    message = "Not a valid email address<!-- data-validator-validemail-message to override -->";
+                                    if ($this.data("validationValidemailMessage")) {
+                                        message = $this.data("validationValidemailMessage");
+                                    } else if ($this.data("validationEmailMessage")) {
+                                        message = $this.data("validationEmailMessage");
+                                    }
+                                    $this.data("validationValidemailMessage", message);
+                                }
+                                // ---------------------------------------------------------
+                                //                                                MINCHECKED
+                                // ---------------------------------------------------------
+                                if ($this.attr("minchecked") !== undefined) {
+                                    message = "Not enough options checked; Minimum of '" + $this.attr("minchecked") + "' required<!-- data-validation-minchecked-message to override -->";
+                                    if ($this.data("validationMincheckedMessage")) {
+                                        message = $this.data("validationMincheckedMessage");
+                                    }
+                                    $this.data("validationMincheckedMessage", message);
+                                    $this.data("validationMincheckedMinchecked", $this.attr("minchecked"));
+                                }
+                                // ---------------------------------------------------------
+                                //                                                MAXCHECKED
+                                // ---------------------------------------------------------
+                                if ($this.attr("maxchecked") !== undefined) {
+                                    message = "Too many options checked; Maximum of '" + $this.attr("maxchecked") + "' required<!-- data-validation-maxchecked-message to override -->";
+                                    if ($this.data("validationMaxcheckedMessage")) {
+                                        message = $this.data("validationMaxcheckedMessage");
+                                    }
+                                    $this.data("validationMaxcheckedMessage", message);
+                                    $this.data("validationMaxcheckedMaxchecked", $this.attr("maxchecked"));
+                                }
+                            }
+
+                            // =============================================================
+                            //                                       COLLECT VALIDATOR NAMES
+                            // =============================================================
+
+                            // Get named validators
+                            if ($this.data("validation") !== undefined) {
+                                validatorNames = $this.data("validation").split(",");
+                            }
+
+                            // Get extra ones defined on the element's data attributes
+                            $.each($this.data(), function(i, el) {
+                                var parts = i.replace(/([A-Z])/g, ",$1").split(",");
+                                if (parts[0] === "validation" && parts[1]) {
+                                    validatorNames.push(parts[1]);
+                                }
+                            });
+
+                            // =============================================================
+                            //                                     NORMALISE VALIDATOR NAMES
+                            // =============================================================
+
+                            var validatorNamesToInspect = validatorNames;
+                            var newValidatorNamesToInspect = [];
+
+                            do // repeatedly expand 'shortcut' validators into their real validators
+                            {
+                                // Uppercase only the first letter of each name
+                                $.each(validatorNames, function(i, el) {
+                                    validatorNames[i] = formatValidatorName(el);
+                                });
+
+                                // Remove duplicate validator names
+                                validatorNames = $.unique(validatorNames);
+
+                                // Pull out the new validator names from each shortcut
+                                newValidatorNamesToInspect = [];
+                                $.each(validatorNamesToInspect, function(i, el) {
+                                    if ($this.data("validation" + el + "Shortcut") !== undefined) {
+                                        // Are these custom validators?
+                                        // Pull them out!
+                                        $.each($this.data("validation" + el + "Shortcut").split(","), function(i2, el2) {
+                                            newValidatorNamesToInspect.push(el2);
+                                        });
+                                    } else if (settings.builtInValidators[el.toLowerCase()]) {
+                                        // Is this a recognised built-in?
+                                        // Pull it out!
+                                        var validator = settings.builtInValidators[el.toLowerCase()];
+                                        if (validator.type.toLowerCase() === "shortcut") {
+                                            $.each(validator.shortcut.split(","), function(i, el) {
+                                                el = formatValidatorName(el);
+                                                newValidatorNamesToInspect.push(el);
+                                                validatorNames.push(el);
+                                            });
+                                        }
+                                    }
+                                });
+
+                                validatorNamesToInspect = newValidatorNamesToInspect;
+
+                            } while (validatorNamesToInspect.length > 0)
+
+                            // =============================================================
+                            //                                       SET UP VALIDATOR ARRAYS
+                            // =============================================================
+
+                            var validators = {};
+
+                            $.each(validatorNames, function(i, el) {
+                                // Set up the 'override' message
+                                var message = $this.data("validation" + el + "Message");
+                                var hasOverrideMessage = (message !== undefined);
+                                var foundValidator = false;
+                                message =
+                                    (
+                                        message ?
+                                        message :
+                                        "'" + el + "' validation failed <!-- Add attribute 'data-validation-" + el.toLowerCase() + "-message' to input to change this message -->"
+                                    );
+
+                                $.each(
+                                    settings.validatorTypes,
+                                    function(validatorType, validatorTemplate) {
+                                        if (validators[validatorType] === undefined) {
+                                            validators[validatorType] = [];
+                                        }
+                                        if (!foundValidator && $this.data("validation" + el + formatValidatorName(validatorTemplate.name)) !== undefined) {
+                                            validators[validatorType].push(
+                                                $.extend(
+                                                    true, {
+                                                        name: formatValidatorName(validatorTemplate.name),
+                                                        message: message
+                                                    },
+                                                    validatorTemplate.init($this, el)
+                                                )
+                                            );
+                                            foundValidator = true;
+                                        }
+                                    }
+                                );
+
+                                if (!foundValidator && settings.builtInValidators[el.toLowerCase()]) {
+
+                                    var validator = $.extend(true, {}, settings.builtInValidators[el.toLowerCase()]);
+                                    if (hasOverrideMessage) {
+                                        validator.message = message;
+                                    }
+                                    var validatorType = validator.type.toLowerCase();
+
+                                    if (validatorType === "shortcut") {
+                                        foundValidator = true;
+                                    } else {
+                                        $.each(
+                                            settings.validatorTypes,
+                                            function(validatorTemplateType, validatorTemplate) {
+                                                if (validators[validatorTemplateType] === undefined) {
+                                                    validators[validatorTemplateType] = [];
+                                                }
+                                                if (!foundValidator && validatorType === validatorTemplateType.toLowerCase()) {
+                                                    $this.data("validation" + el + formatValidatorName(validatorTemplate.name), validator[validatorTemplate.name.toLowerCase()]);
+                                                    validators[validatorType].push(
+                                                        $.extend(
+                                                            validator,
+                                                            validatorTemplate.init($this, el)
+                                                        )
+                                                    );
+                                                    foundValidator = true;
+                                                }
+                                            }
+                                        );
+                                    }
+                                }
+
+                                if (!foundValidator) {
+                                    $.error("Cannot find validation info for '" + el + "'");
+                                }
+                            });
+
+                            // =============================================================
+                            //                                         STORE FALLBACK VALUES
+                            // =============================================================
+
+                            $helpBlock.data(
+                                "original-contents",
+                                (
+                                    $helpBlock.data("original-contents") ?
+                                    $helpBlock.data("original-contents") :
+                                    $helpBlock.html()
+                                )
+                            );
+
+                            $helpBlock.data(
+                                "original-role",
+                                (
+                                    $helpBlock.data("original-role") ?
+                                    $helpBlock.data("original-role") :
+                                    $helpBlock.attr("role")
+                                )
+                            );
+
+                            $controlGroup.data(
+                                "original-classes",
+                                (
+                                    $controlGroup.data("original-clases") ?
+                                    $controlGroup.data("original-classes") :
+                                    $controlGroup.attr("class")
+                                )
+                            );
+
+                            $this.data(
+                                "original-aria-invalid",
+                                (
+                                    $this.data("original-aria-invalid") ?
+                                    $this.data("original-aria-invalid") :
+                                    $this.attr("aria-invalid")
+                                )
+                            );
+
+                            // =============================================================
+                            //                                                    VALIDATION
+                            // =============================================================
+
+                            $this.bind(
+                                "validation.validation",
+                                function(event, params) {
+
+                                    var value = getValue($this);
+
+                                    // Get a list of the errors to apply
+                                    var errorsFound = [];
+
+                                    $.each(validators, function(validatorType, validatorTypeArray) {
+                                        if (value || value.length || (params && params.includeEmpty) || (!!settings.validatorTypes[validatorType].blockSubmit && params && !!params.submitting)) {
+                                            $.each(validatorTypeArray, function(i, validator) {
+                                                if (settings.validatorTypes[validatorType].validate($this, value, validator)) {
+                                                    errorsFound.push(validator.message);
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                    return errorsFound;
+                                }
+                            );
+
+                            $this.bind(
+                                "getValidators.validation",
+                                function() {
+                                    return validators;
+                                }
+                            );
+
+                            // =============================================================
+                            //                                             WATCH FOR CHANGES
+                            // =============================================================
+                            $this.bind(
+                                "submit.validation",
+                                function() {
+                                    return $this.triggerHandler("change.validation", {
+                                        submitting: true
+                                    });
+                                }
+                            );
+                            $this.bind(
+                                [
+                                    "keyup",
+                                    "focus",
+                                    "blur",
+                                    "click",
+                                    "keydown",
+                                    "keypress",
+                                    "change"
+                                ].join(".validation ") + ".validation",
+                                function(e, params) {
+
+                                    var value = getValue($this);
+
+                                    var errorsFound = [];
+
+                                    $controlGroup.find("input,textarea,select").each(function(i, el) {
+                                        var oldCount = errorsFound.length;
+                                        $.each($(el).triggerHandler("validation.validation", params), function(j, message) {
+                                            errorsFound.push(message);
+                                        });
+                                        if (errorsFound.length > oldCount) {
+                                            $(el).attr("aria-invalid", "true");
+                                        } else {
+                                            var original = $this.data("original-aria-invalid");
+                                            $(el).attr("aria-invalid", (original !== undefined ? original : false));
+                                        }
+                                    });
+
+                                    $form.find("input,select,textarea").not($this).not("[name=\"" + $this.attr("name") + "\"]").trigger("validationLostFocus.validation");
+
+                                    errorsFound = $.unique(errorsFound.sort());
+
+                                    // Were there any errors?
+                                    if (errorsFound.length) {
+                                        // Better flag it up as a warning.
+                                        $controlGroup.removeClass("success error").addClass("warning");
+
+                                        // How many errors did we find?
+                                        if (settings.options.semanticallyStrict && errorsFound.length === 1) {
+                                            // Only one? Being strict? Just output it.
+                                            $helpBlock.html(errorsFound[0] +
+                                                (settings.options.prependExistingHelpBlock ? $helpBlock.data("original-contents") : ""));
+                                        } else {
+                                            // Multiple? Being sloppy? Glue them together into an UL.
+                                            $helpBlock.html("<ul role=\"alert\"><li>" + errorsFound.join("</li><li>") + "</li></ul>" +
+                                                (settings.options.prependExistingHelpBlock ? $helpBlock.data("original-contents") : ""));
+                                        }
+                                    } else {
+                                        $controlGroup.removeClass("warning error success");
+                                        if (value.length > 0) {
+                                            $controlGroup.addClass("success");
+                                        }
+                                        $helpBlock.html($helpBlock.data("original-contents"));
+                                    }
+
+                                    if (e.type === "blur") {
+                                        $controlGroup.removeClass("success");
+                                    }
+                                }
+                            );
+                            $this.bind("validationLostFocus.validation", function() {
+                                $controlGroup.removeClass("success");
+                            });
+                        });
+                    },
+                    destroy: function() {
+
+                        return this.each(
+                            function() {
+
+                                var
+                                    $this = $(this),
+                                    $controlGroup = $this.parents(".control-group").first(),
+                                    $helpBlock = $controlGroup.find(".help-block").first();
+
+                                // remove our events
+                                $this.unbind('.validation'); // events are namespaced.
+                                // reset help text
+                                $helpBlock.html($helpBlock.data("original-contents"));
+                                // reset classes
+                                $controlGroup.attr("class", $controlGroup.data("original-classes"));
+                                // reset aria
+                                $this.attr("aria-invalid", $this.data("original-aria-invalid"));
+                                // reset role
+                                $helpBlock.attr("role", $this.data("original-role"));
+                                // remove all elements we created
+                                if (createdElements.indexOf($helpBlock[0]) > -1) {
+                                    $helpBlock.remove();
+                                }
+
+                            }
+                        );
+
+                    },
+                    collectErrors: function(includeEmpty) {
+
+                        var errorMessages = {};
+                        this.each(function(i, el) {
+                            var $el = $(el);
+                            var name = $el.attr("name");
+                            var errors = $el.triggerHandler("validation.validation", {
+                                includeEmpty: true
+                            });
+                            errorMessages[name] = $.extend(true, errors, errorMessages[name]);
+                        });
+
+                        $.each(errorMessages, function(i, el) {
+                            if (el.length === 0) {
+                                delete errorMessages[i];
+                            }
+                        });
+
+                        return errorMessages;
+
+                    },
+                    hasErrors: function() {
+
+                        var errorMessages = [];
+
+                        this.each(function(i, el) {
+                            errorMessages = errorMessages.concat(
+                                $(el).triggerHandler("getValidators.validation") ? $(el).triggerHandler("validation.validation", {
+                                    submitting: true
+                                }) : []
+                            );
+                        });
+
+                        return (errorMessages.length > 0);
+                    },
+                    override: function(newDefaults) {
+                        defaults = $.extend(true, defaults, newDefaults);
+                    }
+                },
+                validatorTypes: {
+                    callback: {
+                        name: "callback",
+                        init: function($this, name) {
+                            return {
+                                validatorName: name,
+                                callback: $this.data("validation" + name + "Callback"),
+                                lastValue: $this.val(),
+                                lastValid: true,
+                                lastFinished: true
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            if (validator.lastValue === value && validator.lastFinished) {
+                                return !validator.lastValid;
+                            }
+
+                            if (validator.lastFinished === true) {
+                                validator.lastValue = value;
+                                validator.lastValid = true;
+                                validator.lastFinished = false;
+
+                                var rrjqbvValidator = validator;
+                                var rrjqbvThis = $this;
+                                executeFunctionByName(
+                                    validator.callback,
+                                    window,
+                                    $this,
+                                    value,
+                                    function(data) {
+                                        if (rrjqbvValidator.lastValue === data.value) {
+                                            rrjqbvValidator.lastValid = data.valid;
+                                            if (data.message) {
+                                                rrjqbvValidator.message = data.message;
+                                            }
+                                            rrjqbvValidator.lastFinished = true;
+                                            rrjqbvThis.data("validation" + rrjqbvValidator.validatorName + "Message", rrjqbvValidator.message);
+                                            // Timeout is set to avoid problems with the events being considered 'already fired'
+                                            setTimeout(function() {
+                                                rrjqbvThis.trigger("change.validation");
+                                            }, 1); // doesn't need a long timeout, just long enough for the event bubble to burst
+                                        }
+                                    }
+                                );
+                            }
+
+                            return false;
+
+                        }
+                    },
+                    ajax: {
+                        name: "ajax",
+                        init: function($this, name) {
+                            return {
+                                validatorName: name,
+                                url: $this.data("validation" + name + "Ajax"),
+                                lastValue: $this.val(),
+                                lastValid: true,
+                                lastFinished: true
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            if ("" + validator.lastValue === "" + value && validator.lastFinished === true) {
+                                return validator.lastValid === false;
+                            }
+
+                            if (validator.lastFinished === true) {
+                                validator.lastValue = value;
+                                validator.lastValid = true;
+                                validator.lastFinished = false;
+                                $.ajax({
+                                    url: validator.url,
+                                    data: "value=" + value + "&field=" + $this.attr("name"),
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if ("" + validator.lastValue === "" + data.value) {
+                                            validator.lastValid = !!(data.valid);
+                                            if (data.message) {
+                                                validator.message = data.message;
+                                            }
+                                            validator.lastFinished = true;
+                                            $this.data("validation" + validator.validatorName + "Message", validator.message);
+                                            // Timeout is set to avoid problems with the events being considered 'already fired'
+                                            setTimeout(function() {
+                                                $this.trigger("change.validation");
+                                            }, 1); // doesn't need a long timeout, just long enough for the event bubble to burst
+                                        }
+                                    },
+                                    failure: function() {
+                                        validator.lastValid = true;
+                                        validator.message = "ajax call failed";
+                                        validator.lastFinished = true;
+                                        $this.data("validation" + validator.validatorName + "Message", validator.message);
+                                        // Timeout is set to avoid problems with the events being considered 'already fired'
+                                        setTimeout(function() {
+                                            $this.trigger("change.validation");
+                                        }, 1); // doesn't need a long timeout, just long enough for the event bubble to burst
+                                    }
+                                });
+                            }
+
+                            return false;
+
+                        }
+                    },
+                    regex: {
+                        name: "regex",
+                        init: function($this, name) {
+                            return {
+                                regex: regexFromString($this.data("validation" + name + "Regex"))
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return (!validator.regex.test(value) && !validator.negative) ||
+                                (validator.regex.test(value) && validator.negative);
+                        }
+                    },
+                    required: {
+                        name: "required",
+                        init: function($this, name) {
+                            return {};
+                        },
+                        validate: function($this, value, validator) {
+                            return !!(value.length === 0 && !validator.negative) ||
+                                !!(value.length > 0 && validator.negative);
+                        },
+                        blockSubmit: true
+                    },
+                    match: {
+                        name: "match",
+                        init: function($this, name) {
+                            var element = $this.parents("form").first().find("[name=\"" + $this.data("validation" + name + "Match") + "\"]").first();
+                            element.bind("validation.validation", function() {
+                                $this.trigger("change.validation", {
+                                    submitting: true
+                                });
+                            });
+                            return {
+                                "element": element
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return (value !== validator.element.val() && !validator.negative) ||
+                                (value === validator.element.val() && validator.negative);
+                        },
+                        blockSubmit: true
+                    },
+                    max: {
+                        name: "max",
+                        init: function($this, name) {
+                            return {
+                                max: $this.data("validation" + name + "Max")
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return (parseFloat(value, 10) > parseFloat(validator.max, 10) && !validator.negative) ||
+                                (parseFloat(value, 10) <= parseFloat(validator.max, 10) && validator.negative);
+                        }
+                    },
+                    min: {
+                        name: "min",
+                        init: function($this, name) {
+                            return {
+                                min: $this.data("validation" + name + "Min")
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return (parseFloat(value) < parseFloat(validator.min) && !validator.negative) ||
+                                (parseFloat(value) >= parseFloat(validator.min) && validator.negative);
+                        }
+                    },
+                    maxlength: {
+                        name: "maxlength",
+                        init: function($this, name) {
+                            return {
+                                maxlength: $this.data("validation" + name + "Maxlength")
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return ((value.length > validator.maxlength) && !validator.negative) ||
+                                ((value.length <= validator.maxlength) && validator.negative);
+                        }
+                    },
+                    minlength: {
+                        name: "minlength",
+                        init: function($this, name) {
+                            return {
+                                minlength: $this.data("validation" + name + "Minlength")
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return ((value.length < validator.minlength) && !validator.negative) ||
+                                ((value.length >= validator.minlength) && validator.negative);
+                        }
+                    },
+                    maxchecked: {
+                        name: "maxchecked",
+                        init: function($this, name) {
+                            var elements = $this.parents("form").first().find("[name=\"" + $this.attr("name") + "\"]");
+                            elements.bind("click.validation", function() {
+                                $this.trigger("change.validation", {
+                                    includeEmpty: true
+                                });
+                            });
+                            return {
+                                maxchecked: $this.data("validation" + name + "Maxchecked"),
+                                elements: elements
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return (validator.elements.filter(":checked").length > validator.maxchecked && !validator.negative) ||
+                                (validator.elements.filter(":checked").length <= validator.maxchecked && validator.negative);
+                        },
+                        blockSubmit: true
+                    },
+                    minchecked: {
+                        name: "minchecked",
+                        init: function($this, name) {
+                            var elements = $this.parents("form").first().find("[name=\"" + $this.attr("name") + "\"]");
+                            elements.bind("click.validation", function() {
+                                $this.trigger("change.validation", {
+                                    includeEmpty: true
+                                });
+                            });
+                            return {
+                                minchecked: $this.data("validation" + name + "Minchecked"),
+                                elements: elements
+                            };
+                        },
+                        validate: function($this, value, validator) {
+                            return (validator.elements.filter(":checked").length < validator.minchecked && !validator.negative) ||
+                                (validator.elements.filter(":checked").length >= validator.minchecked && validator.negative);
+                        },
+                        blockSubmit: true
+                    }
+                },
+                builtInValidators: {
+                    email: {
+                        name: "Email",
+                        type: "shortcut",
+                        shortcut: "validemail"
+                    },
+                    validemail: {
+                        name: "Validemail",
+                        type: "regex",
+                        regex: "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\.[A-Za-z]{2,4}",
+                        message: "Not a valid email address<!-- data-validator-validemail-message to override -->"
+                    },
+                    passwordagain: {
+                        name: "Passwordagain",
+                        type: "match",
+                        match: "password",
+                        message: "Does not match the given password<!-- data-validator-paswordagain-message to override -->"
+                    },
+                    positive: {
+                        name: "Positive",
+                        type: "shortcut",
+                        shortcut: "number,positivenumber"
+                    },
+                    negative: {
+                        name: "Negative",
+                        type: "shortcut",
+                        shortcut: "number,negativenumber"
+                    },
+                    number: {
+                        name: "Number",
+                        type: "regex",
+                        regex: "([+-]?\\\d+(\\\.\\\d*)?([eE][+-]?[0-9]+)?)?",
+                        message: "Must be a number<!-- data-validator-number-message to override -->"
+                    },
+                    integer: {
+                        name: "Integer",
+                        type: "regex",
+                        regex: "[+-]?\\\d+",
+                        message: "No decimal places allowed<!-- data-validator-integer-message to override -->"
+                    },
+                    positivenumber: {
+                        name: "Positivenumber",
+                        type: "min",
+                        min: 0,
+                        message: "Must be a positive number<!-- data-validator-positivenumber-message to override -->"
+                    },
+                    negativenumber: {
+                        name: "Negativenumber",
+                        type: "max",
+                        max: 0,
+                        message: "Must be a negative number<!-- data-validator-negativenumber-message to override -->"
+                    },
+                    required: {
+                        name: "Required",
+                        type: "required",
+                        message: "This is required<!-- data-validator-required-message to override -->"
+                    },
+                    checkone: {
+                        name: "Checkone",
+                        type: "minchecked",
+                        minchecked: 1,
+                        message: "Check at least one option<!-- data-validation-checkone-message to override -->"
+                    }
+                }
+            };
+
+            var formatValidatorName = function(name) {
+                return name
+                    .toLowerCase()
+                    .replace(
+                        /(^|\s)([a-z])/g,
+                        function(m, p1, p2) {
+                            return p1 + p2.toUpperCase();
+                        }
+                    );
+            };
+
+            var getValue = function($this) {
+                // Extract the value we're talking about
+                var value = $this.val();
+                var type = $this.attr("type");
+                if (type === "checkbox") {
+                    value = ($this.is(":checked") ? value : "");
+                }
+                if (type === "radio") {
+                    value = ($('input[name="' + $this.attr("name") + '"]:checked').length > 0 ? value : "");
+                }
+                return value;
+            };
+
+            function regexFromString(inputstring) {
+                return new RegExp("^" + inputstring + "$");
+            }
+
+            /**
+             * Thanks to Jason Bunting via StackOverflow.com
+             *
+             * http://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string#answer-359910
+             * Short link: http://tinyurl.com/executeFunctionByName
+             **/
+            function executeFunctionByName(functionName, context /*, args*/ ) {
+                var args = Array.prototype.slice.call(arguments).splice(2);
+                var namespaces = functionName.split(".");
+                var func = namespaces.pop();
+                for (var i = 0; i < namespaces.length; i++) {
+                    context = context[namespaces[i]];
+                }
+                return context[func].apply(this, args);
+            }
+
+            $.fn.jqBootstrapValidation = function(method) {
+
+                if (defaults.methods[method]) {
+                    return defaults.methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+                } else if (typeof method === 'object' || !method) {
+                    return defaults.methods.init.apply(this, arguments);
+                } else {
+                    $.error('Method ' + method + ' does not exist on jQuery.jqBootstrapValidation');
+                    return null;
+                }
+
+            };
+
+            $.jqBootstrapValidation = function(options) {
+                $(":input").not("[type=image],[type=submit]").jqBootstrapValidation.apply(this, arguments);
+            };
+
+        })(jQuery);
+    </script>
+    {%endblock%}
+</body>
+
+</html>

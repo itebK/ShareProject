@@ -1,0 +1,239 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1><i class="glyphicon glyphicon-file"></i>Language(s):
+
+    <button class="btn btn-success" data-toggle="modal" data-target="#LanguagesModal">+</button>
+
+</h1>
+
+
+
+{% for lng in languages%}
+
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="well well-sm">
+        <div class="row">
+
+            <div class="col-sm-6 col-md-8">
+
+                <h4>{{lng.libelle}}:
+                    <div style="color:#128F76;display: inline;">
+                        {% if lng.etoile != ''%} {{lng.etoile}}
+                        <i class="glyphicon-star glyphicon"></i> {%else%} 0
+                        <i class="glyphicon-star glyphicon"></i> {%endif%}
+                    </div>
+                </h4>
+
+                <form class="starsForm" method="post" action="RatingLanguage/{{lng.id}}/">
+                    {% csrf_token %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="starrr"></div><button class="btn btn-success">Rate</button>
+                                <div class="alert alert-success hide">
+                                    <h5> <button type="button" class="close" data-dismiss="alert">×</button> You gave a rating of <span id="count" name="countstars">0</span> star(s) to {{lng.libelle}}</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" name="starsnumbers" class="starsnumber" style="visibility:hidden!important;">
+                </form>
+
+
+
+                <p><small>Owner: {{lng.profile_fk}}</small><br>
+                    <hr />
+                    <h4>Syntaxe:</h4> {% for syn in syntaxe%} {% if syn.language_fk.id == lng.id%}
+                    <small>Label: {{syn.libelle}}</small><br>
+                    <small>Description: {{syn.description}}</small><br><br><br> {%endif%} {%endfor%}
+                    <form method="post" action="{% url 'Add_syntaxe' lngid=lng.id%}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">+</button>
+                    </form>
+                    <hr />
+                    <h4>Meta-Model:</h4> {% for m in meta_m%} {% if m.language_fk.id == lng.id%}
+                    <small>Label: {{m.libelle}}</small><br>
+                    <small>Description: {{m.description}}</small><br><br><br> {%endif%} {%endfor%}
+                    <form method="post" action="{% url 'Add_meta_m' lngid=lng.id%}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">+</button>
+                    </form>
+
+
+
+                </p>
+                <br>
+                <!-- Split button -->
+                <div class="btn-group">
+                    <form action="delete/{{lng.id}}">
+                        <button type="submit" class="btn btn-danger">X</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor%}
+
+<!-- LanguagestModal -->
+<div class="modal fade" id="LanguagesModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form method="post" action="{% url 'Add_languages'%}">
+                {%csrf_token%}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Language</h4>
+                </div>
+                <div class="modal-body">
+                    <label class="col-2 col-form-label">Label</label>
+                    <div class="col-10">
+                        <input class="form-control" required="True" type="text" name="libelle">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% block javascript%}
+
+<script>
+    // starrr plugin (https://github.com/dobtco/starrr)
+
+    // This demo shows using Glyphicons for the star icons,
+    // but any icon can be used by setting the `emptyStarClass`
+    // and `fullStarClass` plugin options.
+    var __slice = [].slice;
+
+    (function($, window) {
+        var Starrr;
+        Starrr = (function() {
+            Starrr.prototype.defaults = {
+                rating: void 0,
+                emptyStarClass: 'glyphicon glyphicon-star-empty',
+                fullStarClass: 'glyphicon glyphicon-star',
+                numStars: 5,
+                change: function(e, value) {}
+            };
+
+            function Starrr($el, options) {
+                var i, _, _ref;
+                this.options = $.extend({}, this.defaults, options);
+                this.$el = $el;
+                _ref = this.defaults;
+                for (i in _ref) {
+                    _ = _ref[i];
+                    if (this.$el.data(i) != null) {
+                        this.options[i] = this.$el.data(i);
+                    }
+                }
+                this.createStars();
+                this.syncRating();
+                this.$el.on('mouseover.starrr', 'i', (function(_this) {
+                    return function(e) {
+                        return _this.syncRating(_this.$el.find('i').index(e.currentTarget) + 1);
+                    };
+                })(this));
+                this.$el.on('mouseout.starrr', (function(_this) {
+                    return function() {
+                        return _this.syncRating();
+                    };
+                })(this));
+                this.$el.on('click.starrr', 'i', (function(_this) {
+                    return function(e) {
+                        return _this.setRating(_this.$el.find('i').index(e.currentTarget) + 1);
+                    };
+                })(this));
+                this.$el.on('starrr:change', this.options.change);
+            }
+
+            Starrr.prototype.createStars = function() {
+                var _i, _ref, _results;
+                _results = [];
+                for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+                    _results.push(this.$el.append("<i class='" + this.options.emptyStarClass + "'></i>"));
+                }
+                return _results;
+            };
+
+            Starrr.prototype.setRating = function(rating) {
+                this.options.rating = this.options.rating === rating ? void 0 : rating;
+                this.syncRating();
+                return this.$el.trigger('starrr:change', this.options.rating);
+            };
+
+            Starrr.prototype.syncRating = function(rating) {
+                var i, _i, _j, _ref;
+                rating || (rating = this.options.rating);
+                if (rating) {
+                    for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+                        this.$el.find('i').eq(i).removeClass(this.options.emptyStarClass).addClass(this.options.fullStarClass);
+                    }
+                }
+                if (rating && rating < 5) {
+                    for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+                        this.$el.find('i').eq(i).removeClass(this.options.fullStarClass).addClass(this.options.emptyStarClass);
+                    }
+                }
+                if (!rating) {
+                    return this.$el.find('i').removeClass(this.options.fullStarClass).addClass(this.options.emptyStarClass);
+                }
+            };
+
+            return Starrr;
+
+        })();
+        return $.fn.extend({
+            starrr: function() {
+                var args, option;
+                option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+                return this.each(function() {
+                    var data;
+                    data = $(this).data('star-rating');
+                    if (!data) {
+                        $(this).data('star-rating', (data = new Starrr($(this), option)));
+                    }
+                    if (typeof option === 'string') {
+                        return data[option].apply(data, args);
+                    }
+                });
+            }
+        });
+    })(window.jQuery, window);
+
+    // once the DOM is ready
+    $(document).ready(function() {
+
+        // fade out alert after 3.5 seconds
+        $(".alert").addClass("in").fadeOut(3500);
+
+        $(".starrr").starrr();
+
+        $('.starrr').on('starrr:change', function(e, value) {
+            $('#count').html(value);
+            $('.starsnumber').val(value);
+            $('.alert').removeClass('hide').show().delay(1000).addClass("in").fadeOut(3500);
+            setTimeout(function() {
+                //$(".starsForm").submit();
+            }, 4000);
+
+
+        });
+
+    });
+</script>
+
+
+{% endblock javascript%} {% endblock content %}
